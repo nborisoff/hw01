@@ -6,7 +6,9 @@ import {
   OutputErrorsType,
   OutputVideoType,
 } from "../../models/videos";
-import { VideoDBType } from "../../types/video";
+import { VideoDBType } from "../../types/videos";
+import { HTTP_STATUSES } from "../../app/settings";
+import {isResolutionCorrect} from "../../utils/common";
 
 export const createVideo = (
   req: RequestWithBody<InputVideoType>,
@@ -19,6 +21,12 @@ export const createVideo = (
   //         .json(errors)
   //     return
   // }
+
+
+  if (!isResolutionCorrect(req.body.availableResolutions)) {
+    res.sendStatus(HTTP_STATUSES.BAD_REQUEST_400);
+    return;
+  }
 
   const newVideo: VideoDBType = {
     ...req.body,

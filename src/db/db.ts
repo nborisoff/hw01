@@ -1,6 +1,6 @@
 // import {VideoDBType} from './video-db-type'
 
-import {VideoDBType} from "../types/video";
+import {VideoDBType} from "../types/videos";
 
 export type DBType = {
     videos: VideoDBType[];

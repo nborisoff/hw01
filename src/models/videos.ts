@@ -1,11 +1,13 @@
+import { type VideoDBType } from "../types/videos";
+
 export type InputVideoType = {
   title: string;
   author: string;
-  canBeDownloaded: boolean;
-  minAgeRestriction: number;
-  createdAt: string;
-  publicationDate: string;
-  availableResolutions: string[];
+  availableResolutions: VideoDBType["availableResolutions"];
+  canBeDownloaded?: boolean;
+  minAgeRestriction?: number;
+  createdAt?: string;
+  publicationDate?: string;
 };
 
 export type videoIdModel = {

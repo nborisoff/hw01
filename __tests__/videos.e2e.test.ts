@@ -1,15 +1,14 @@
 import { req } from "./test-helpers";
-// import {setDB} from '../src/db/db'
-// import {dataset1} from './datasets'
 import { SETTINGS } from "../src/app/settings";
-import {db, setDB} from "../src/db/db";
-import {existedVideoDataset} from "../src/db/datasets";
+import { setDB } from "../src/db/db";
+import { existedVideoDataset } from "../src/db/datasets";
 import { InputVideoType } from "../src/models/videos";
+import { RESOLUTIONS } from "../src/const/videos";
 
 describe("/videos", () => {
   beforeAll(async () => {
     // setDB();
-    await req.delete('/testing/all-data')
+    await req.delete("/testing/all-data");
   });
 
   it("should get empty array", async () => {
@@ -35,19 +34,21 @@ describe("/videos", () => {
 
   it("should create video", async () => {
     // setDB();
-    const newVideo: InputVideoType = {
+    const newVideo = {
       title: "t1",
       author: "a1",
-      canBeDownloaded: true,
-      minAgeRestriction: 16,
-      createdAt: `${new Date()}`,
-      publicationDate: `${new Date()}`,
-      availableResolutions: ["p144"],
+      // canBeDownloaded: true,
+      // minAgeRestriction: 16,
+      // createdAt: `${new Date()}`,
+      // publicationDate: `${new Date()}`,
+      availableResolutions: ["P720"],
     };
 
     const res = await req.post(SETTINGS.PATH.VIDEOS).send(newVideo).expect(201);
 
-    expect(res.body.availableResolutions[0]).toEqual(newVideo.availableResolutions[0]);
+    expect(res.body.availableResolutions[0]).toEqual(
+      newVideo.availableResolutions[0],
+    );
   });
 
   // it('shouldn\'t find', async () => {
@@ -61,17 +62,18 @@ describe("/videos", () => {
   it(`should update video`, async () => {
     setDB(existedVideoDataset);
 
-    await req.put(`${SETTINGS.PATH.VIDEOS}/1`).send({
-      title: "t2",
-      author: "ta",
-      availableResolutions: [
-        "P1080"
-      ],
-      canBeDownloaded: true,
-      minAgeRestriction: 18,
-      publicationDate: `${new Date()}`
-    }).expect(204);
-  })
+    await req
+      .put(`${SETTINGS.PATH.VIDEOS}/1`)
+      .send({
+        title: "t2",
+        author: "ta",
+        availableResolutions: ["P1080"],
+        canBeDownloaded: true,
+        minAgeRestriction: 18,
+        publicationDate: `${new Date()}`,
+      })
+      .expect(204);
+  });
 
   it("should return empty array after deleting", async () => {
     setDB(existedVideoDataset);

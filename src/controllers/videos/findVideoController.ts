@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { RequestWithParams } from "../../types/common-types";
 import { videoIdModel } from "../../models/videos";
-import { VideoDBType } from "../../types/video";
+import { VideoDBType } from "../../types/videos";
 import { db } from "../../db/db";
 import { HTTP_STATUSES } from "../../app/settings";
 
