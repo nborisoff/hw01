@@ -45,14 +45,14 @@ export const inputValidation = (video: UpdateVideoModel) => {
     });
   }
 
-  if (!title) {
+  if (!title || title.length > 40) {
     errors.errorsMessages.push({
       message: "title error",
       field: `title`,
     });
   }
 
-  if (!author) {
+  if (!author || title.length > 20) {
     errors.errorsMessages.push({
       message: "author error",
       field: `author`,
