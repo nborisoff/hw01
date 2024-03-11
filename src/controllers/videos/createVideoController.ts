@@ -17,12 +17,7 @@ export const createVideo = (
 ) => {
   const errors = inputValidation(req.body);
 
-  if (errors.errorsMessages.length ||
-      // req.body.availableResolutions
-      // && !isResolutionCorrect(req.body.availableResolutions)) ||
-      !req.body.title ||
-      !req.body.author
-  ) {
+  if (errors.errorsMessages.length) {
     res.status(HTTP_STATUSES.BAD_REQUEST_400).json(errors);
     return;
   }
@@ -52,9 +47,24 @@ const inputValidation = (video: InputVideoType) => {
 
   if (!isResolutionCorrect(video.availableResolutions!)) {
     errors.errorsMessages.push({
-      message: "error!!!!",
+      message: "resolution error",
       field: "availableResolution",
     });
   }
+
+  if (!video.title) {
+    errors.errorsMessages.push({
+      message: "title error",
+      field: video.title,
+    });
+  }
+
+  if (!video.author) {
+    errors.errorsMessages.push({
+      message: "author error",
+      field: video.title,
+    });
+  }
+
   return errors;
 };
