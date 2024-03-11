@@ -18,7 +18,6 @@ export const createVideo = (
   //         .json(errors)
   //     return
   // }
-
   if (req.body.availableResolutions && !isResolutionCorrect(req.body.availableResolutions)) {
     res.sendStatus(HTTP_STATUSES.BAD_REQUEST_400);
     return;
@@ -26,16 +25,17 @@ export const createVideo = (
 
   const newVideo: VideoDBType = {
     id: Date.now() + Math.random(),
-    createdAt: `${new Date().toISOString()}`,
-    publicationDate: `${new Date().toISOString()}`,
+    createdAt: new Date().toISOString(),
+    publicationDate: new Date().toISOString(),
     canBeDownloaded: true,
     minAgeRestriction: 0,
     availableResolutions: [RESOLUTIONS.p144],
     ...req.body,
   };
+
   db.videos = [...db.videos, newVideo];
 
-  res.sendStatus(201).json(newVideo);
+  res.status(201).json(newVideo);
 };
 
 

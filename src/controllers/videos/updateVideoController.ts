@@ -44,5 +44,5 @@ export const updateVideo = (
   if (video.publicationDate)
     video.publicationDate = publicationDate || video.publicationDate;
 
-  res.sendStatus(HTTP_STATUSES.NO_CONTENT_204);
+  res.status(HTTP_STATUSES.NO_CONTENT_204);
 };
