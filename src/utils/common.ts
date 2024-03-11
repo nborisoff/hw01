@@ -52,7 +52,7 @@ export const inputValidation = (video: UpdateVideoModel) => {
     });
   }
 
-  if (!author || title.length > 20) {
+  if (!author || author.length > 20) {
     errors.errorsMessages.push({
       message: "author error",
       field: `author`,

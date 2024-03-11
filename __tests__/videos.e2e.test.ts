@@ -35,7 +35,7 @@ describe("/videos", () => {
   it("should create video", async () => {
     // setDB();
     const newVideo = {
-      title: "t1",
+      title: null,
       author: "a1",
       availableResolutions: ["P720"],
     };
