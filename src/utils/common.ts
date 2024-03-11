@@ -10,3 +10,11 @@ export const isResolutionCorrect = (arr: RESOLUTIONS[]) => {
 
   return i === 0;
 };
+
+export const addDays = function (str: string, days: number) {
+  let myDate = new Date(str);
+
+  myDate.setDate(myDate.getDate() + days);
+
+  return myDate;
+};

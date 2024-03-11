@@ -4,9 +4,9 @@ export type VideoDBType = {
   id: number;
   title: string;
   author: string;
-  availableResolutions: RESOLUTIONS[];
+  availableResolutions: RESOLUTIONS[] | null;
   canBeDownloaded?: boolean;
-  minAgeRestriction?: number;
+  minAgeRestriction?: number | null;
   createdAt?: string;
   publicationDate?: string;
 };

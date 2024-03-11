@@ -41,21 +41,14 @@ describe("/videos", () => {
     };
 
     const res = await req.post(SETTINGS.PATH.VIDEOS).send(newVideo).expect(201);
-    console.log(res.body)
+console.log(res.body)
     // expect(res.body.availableResolutions[0]).toEqual(
     //   newVideo.availableResolutions[0],
     // );
     const res1 = await req.get(`${SETTINGS.PATH.VIDEOS}/${res.body.id}`).expect(200);
-    console.log(res1.body)
+console.log(res1.body)
   });
 
-  // it('shouldn\'t find', async () => {
-  //     setDB(dataset1)
-  //
-  //     const res = await req
-  //         .get(PATH.VIDEOS + '/1')
-  //         .expect(404)
-  // ...
 
   it(`should update video`, async () => {
     setDB(existedVideoDataset);

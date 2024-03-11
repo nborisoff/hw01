@@ -16,5 +16,5 @@ export const findVideo = (
     return;
   }
 
-  res.status(200).json(video);
+  res.status(HTTP_STATUSES.OK_200).json(video);
 };

@@ -4,7 +4,7 @@ import { RequestWithBody } from "../../types/common-types";
 import { InputVideoType, OutputVideoType } from "../../models/videos";
 import { VideoDBType } from "../../types/videos";
 import { HTTP_STATUSES } from "../../app/settings";
-import { isResolutionCorrect } from "../../utils/common";
+import { addDays, isResolutionCorrect } from "../../utils/common";
 import { RESOLUTIONS } from "../../const/videos";
 
 export const createVideo = (
@@ -18,24 +18,30 @@ export const createVideo = (
   //         .json(errors)
   //     return
   // }
-  if (req.body.availableResolutions && !isResolutionCorrect(req.body.availableResolutions)) {
+  if (
+    req.body.availableResolutions &&
+    !isResolutionCorrect(req.body.availableResolutions)
+  ) {
     res.sendStatus(HTTP_STATUSES.BAD_REQUEST_400);
     return;
   }
 
+  const date = addDays(new Date().toISOString(), 1).toISOString();
+
   const newVideo: VideoDBType = {
     id: Date.now() + Math.random(),
-    createdAt: new Date().toISOString(),
-    publicationDate: new Date().toISOString(),
-    canBeDownloaded: true,
-    minAgeRestriction: 0,
-    availableResolutions: [RESOLUTIONS.p144],
-    ...req.body,
+    createdAt: date,
+    publicationDate: date,
+    canBeDownloaded: false,
+    minAgeRestriction: null,
+    availableResolutions: req.body.availableResolutions || null,
+    author: req.body.author,
+    title: req.body.title,
   };
 
   db.videos = [...db.videos, newVideo];
 
-  res.status(201).json(newVideo);
+  res.status(HTTP_STATUSES.NO_CONTENT_204).json(newVideo);
 };
 
 

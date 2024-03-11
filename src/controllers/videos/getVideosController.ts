@@ -16,7 +16,7 @@ export const getVideos = (
   //   videos = videos.filter((c) => c.title.indexOf(req.query.title) > -1);
   // }
 
-  res.status(200).json(
+  res.status(HTTP_STATUSES.CREATED_201).json(
     videos.map((video) => {
       return video;
     }),
