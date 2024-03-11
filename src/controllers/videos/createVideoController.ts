@@ -55,14 +55,14 @@ const inputValidation = (video: InputVideoType) => {
   if (!video.title) {
     errors.errorsMessages.push({
       message: "title error",
-      field: video.title,
+      field: `${video.title}`,
     });
   }
 
   if (!video.author) {
     errors.errorsMessages.push({
       message: "author error",
-      field: video.title,
+      field: `${video.author}`,
     });
   }
 
