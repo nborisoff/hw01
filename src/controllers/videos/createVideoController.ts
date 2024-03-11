@@ -41,7 +41,7 @@ export const createVideo = (
 
   db.videos = [...db.videos, newVideo];
 
-  res.status(HTTP_STATUSES.NO_CONTENT_204).json(newVideo);
+  res.status(HTTP_STATUSES.CREATED_201).json(newVideo);
 };
 
 

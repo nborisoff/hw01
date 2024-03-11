@@ -41,7 +41,7 @@ describe("/videos", () => {
     };
 
     const res = await req.post(SETTINGS.PATH.VIDEOS).send(newVideo).expect(201);
-console.log(res.body)
+
     // expect(res.body.availableResolutions[0]).toEqual(
     //   newVideo.availableResolutions[0],
     // );
