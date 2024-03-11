@@ -3,11 +3,7 @@ import { type VideoDBType } from "../types/videos";
 export type InputVideoType = {
   title: string;
   author: string;
-  availableResolutions: VideoDBType["availableResolutions"];
-  canBeDownloaded?: boolean;
-  minAgeRestriction?: number;
-  createdAt?: string;
-  publicationDate?: string;
+  availableResolutions?: VideoDBType["availableResolutions"];
 };
 
 export type videoIdModel = {
@@ -17,17 +13,14 @@ export type videoIdModel = {
   id: string;
 };
 
-export type UpdateVideoModel = Partial<
-  Pick<
-    InputVideoType,
-    | "title"
-    | "author"
-    | "availableResolutions"
-    | "canBeDownloaded"
-    | "minAgeRestriction"
-    | "publicationDate"
-  >
->;
+export type UpdateVideoModel = Pick<
+  InputVideoType,
+  "title" | "author" | "availableResolutions"
+> & {
+  canBeDownloaded?: boolean;
+  minAgeRestriction?: number;
+  publicationDate?: string;
+};
 
 export type OutputVideoType = {};
 export type OutputErrorsType = {};
