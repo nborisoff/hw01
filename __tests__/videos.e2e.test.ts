@@ -35,7 +35,7 @@ describe("/videos", () => {
   it("should create video", async () => {
     // setDB();
     const newVideo = {
-      title: null,
+      title: "t1",
       author: "a1",
       availableResolutions: ["P720"],
     };
@@ -70,5 +70,15 @@ describe("/videos", () => {
     setDB(existedVideoDataset);
     await req.delete(`${SETTINGS.PATH.TESTING}/all-data`).expect(204);
     await req.get(SETTINGS.PATH.VIDEOS).expect(200, []);
+  });
+
+  it("should return 404 after trying deleting non-existent video", async () => {
+    await req.delete(`${SETTINGS.PATH.VIDEOS}/9999`).expect(404);
+  });
+
+  it("should return 404 after  deleting  video", async () => {
+    setDB(existedVideoDataset);
+    await req.delete(`${SETTINGS.PATH.VIDEOS}/1`).expect(204);
+    await req.get(`${SETTINGS.PATH.VIDEOS}/1`).expect(404);
   });
 });

@@ -41,7 +41,7 @@ export const inputValidation = (video: UpdateVideoModel) => {
   if (!isResolutionCorrect(availableResolutions!)) {
     errors.errorsMessages.push({
       message: "resolution error",
-      field: "availableResolution",
+      field: "availableResolutions",
     });
   }
 

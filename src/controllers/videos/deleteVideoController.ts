@@ -11,7 +11,7 @@ export const deleteVideo = (req: RequestWithParams<videoIdModel>, res: any) => {
     return;
   }
 
-  db.videos = db.videos.splice(index, 1);
+  db.videos.splice(index, 1);
 
   res.sendStatus(HTTP_STATUSES.NO_CONTENT_204);
 };

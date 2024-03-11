@@ -15,6 +15,6 @@ export const findVideo = (
     res.sendStatus(HTTP_STATUSES.NOT_FOUND_404);
     return;
   }
-
+// console.log(video)
   res.status(HTTP_STATUSES.OK_200).json(video);
 };
