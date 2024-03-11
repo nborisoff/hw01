@@ -66,7 +66,7 @@ export const inputValidation = (video: UpdateVideoModel) => {
     });
   }
 
-  if (minAgeRestriction && typeof minAgeRestriction !== "number") {
+  if (minAgeRestriction && typeof minAgeRestriction !== "number" && minAgeRestriction < 1 && minAgeRestriction > 18) {
     errors.errorsMessages.push({
       message: "minAgeRestriction error",
       field: `minAgeRestriction`,
