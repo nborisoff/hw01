@@ -37,18 +37,21 @@ describe("/videos", () => {
     const newVideo = {
       title: "t1",
       author: "a1",
-      // canBeDownloaded: true,
-      // minAgeRestriction: 16,
-      // createdAt: `${new Date()}`,
-      // publicationDate: `${new Date()}`,
+      canBeDownloaded: true,
+      minAgeRestriction: 16,
+      createdAt: `${new Date()}`,
+      publicationDate: `${new Date()}`,
       availableResolutions: ["P720"],
     };
 
     const res = await req.post(SETTINGS.PATH.VIDEOS).send(newVideo).expect(201);
+    await req.post(SETTINGS.PATH.VIDEOS).send(newVideo).expect(201);
 
     expect(res.body.availableResolutions[0]).toEqual(
       newVideo.availableResolutions[0],
     );
+    const res1 = await req.get(SETTINGS.PATH.VIDEOS).expect(200);
+    console.log(res1.body)
   });
 
   // it('shouldn\'t find', async () => {
