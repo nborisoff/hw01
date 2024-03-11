@@ -59,21 +59,21 @@ export const inputValidation = (video: UpdateVideoModel) => {
     });
   }
 
-  if (typeof canBeDownloaded !== "boolean") {
+  if (canBeDownloaded && typeof canBeDownloaded !== "boolean") {
     errors.errorsMessages.push({
       message: "canBeDownloaded error",
       field: `canBeDownloaded`,
     });
   }
 
-  if (typeof minAgeRestriction !== "number") {
+  if (minAgeRestriction && typeof minAgeRestriction !== "number") {
     errors.errorsMessages.push({
       message: "minAgeRestriction error",
       field: `minAgeRestriction`,
     });
   }
 
-  if (typeof publicationDate !== "string") {
+  if (publicationDate && typeof publicationDate !== "string") {
     errors.errorsMessages.push({
       message: "publicationDate error",
       field: `publicationDate`,
