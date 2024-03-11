@@ -16,5 +16,5 @@ export const addDays = function (str: string, days: number) {
 
   myDate.setDate(myDate.getDate() + days);
 
-  return myDate;
+  return myDate.toISOString();
 };

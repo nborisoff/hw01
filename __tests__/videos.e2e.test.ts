@@ -46,7 +46,7 @@ describe("/videos", () => {
     //   newVideo.availableResolutions[0],
     // );
     const res1 = await req.get(`${SETTINGS.PATH.VIDEOS}/${res.body.id}`).expect(200);
-console.log(res1.body)
+
   });
 
 

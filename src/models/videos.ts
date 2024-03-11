@@ -23,4 +23,6 @@ export type UpdateVideoModel = Pick<
 };
 
 export type OutputVideoType = {};
-export type OutputErrorsType = {};
+export type OutputErrorsType = {
+  errorsMessages: { message: string; field: string }[];
+};
