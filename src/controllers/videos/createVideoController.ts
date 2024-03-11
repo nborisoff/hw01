@@ -8,12 +8,11 @@ import {
 } from "../../models/videos";
 import { VideoDBType } from "../../types/videos";
 import { HTTP_STATUSES } from "../../app/settings";
-import { addDays, isResolutionCorrect } from "../../utils/common";
-import { RESOLUTIONS } from "../../const/videos";
+import { addDays, inputValidation } from "../../utils/common";
 
 export const createVideo = (
-    req: RequestWithBody<InputVideoType>,
-    res: Response<OutputVideoType>,
+  req: RequestWithBody<InputVideoType>,
+  res: Response<OutputVideoType>,
 ) => {
   const errors = inputValidation(req.body);
 
@@ -38,33 +37,4 @@ export const createVideo = (
   db.videos = [...db.videos, newVideo];
 
   res.status(HTTP_STATUSES.CREATED_201).json(newVideo);
-};
-
-const inputValidation = (video: InputVideoType) => {
-  const errors: OutputErrorsType = {
-    errorsMessages: [],
-  };
-
-  if (!isResolutionCorrect(video.availableResolutions!)) {
-    errors.errorsMessages.push({
-      message: "resolution error",
-      field: "availableResolution",
-    });
-  }
-
-  if (!video.title) {
-    errors.errorsMessages.push({
-      message: "title error",
-      field: `${video.title}`,
-    });
-  }
-
-  if (!video.author) {
-    errors.errorsMessages.push({
-      message: "author error",
-      field: `${video.author}`,
-    });
-  }
-
-  return errors;
 };
