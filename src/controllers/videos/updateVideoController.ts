@@ -19,7 +19,7 @@ export const updateVideo = (
   const errors = inputValidation(req.body);
 
   if (errors.errorsMessages.length) {
-    res.sendStatus(HTTP_STATUSES.BAD_REQUEST_400);
+    res.status(HTTP_STATUSES.BAD_REQUEST_400).json(errors);
     return;
   }
 
